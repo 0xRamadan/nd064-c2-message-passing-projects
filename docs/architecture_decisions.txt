@@ -1,0 +1,16 @@
+Here is the architecture decisions that I user to refactor the application from Monolith to microservice.
+
+1. Persons API:
+  - Separation from the API bundle makes sense because this is the main connection point for the frontend 
+  - Separating this service is beneficial to scaling the application.
+
+2. Location API:
+  - the Location API is used to extract the location from the database.
+  - Separating this into a its own microservice will reduce the traffic from the person api.
+
+3. Location Producer:
+  - A gRPC Kafka Producer.
+  - This will be a good efficient way and will match the requirement of processing a lot of users data concurrently.
+
+4. Location Consumer:
+  - reads data from a Kafka queue and writes it to a database. 
